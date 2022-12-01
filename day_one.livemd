@@ -1,0 +1,90 @@
+<!-- livebook:{"persist_outputs":true} -->
+
+# Day 1
+
+```elixir
+Mix.install([
+  {:kino, "~> 0.7.0"}
+])
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+:ok
+```
+
+## Solution
+
+```elixir
+input = Kino.Input.textarea("input")
+```
+
+```elixir
+defmodule Utils do
+  def split_on_blank_line(input) do
+    input
+    |> String.trim()
+    |> String.split("\n\n")
+  end
+
+  def extract_integers(string) do
+    string
+    |> String.split("\n")
+    |> Utils.parse_integers()
+  end
+
+  def parse_integers(array) do
+    array
+    |> Enum.map(&String.to_integer/1)
+  end
+
+  def max_n(array, count \\ 1)
+
+  def max_n(_array, 0) do
+    []
+  end
+
+  def max_n(array, count) do
+    max = Enum.max(array)
+    [max | max_n(Enum.reject(array, &(&1 == max)), count - 1)]
+  end
+end
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+{:module, Utils, <<70, 79, 82, 49, 0, 0, 11, ...>>, {:max_n, 2}}
+```
+
+```elixir
+input = Kino.Input.read(input)
+
+input
+|> Utils.split_on_blank_line()
+|> Enum.map(&Utils.extract_integers/1)
+|> Enum.map(&Enum.sum/1)
+|> Enum.max()
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+67658
+```
+
+```elixir
+input
+|> Utils.split_on_blank_line()
+|> Enum.map(&Utils.extract_integers/1)
+|> Enum.map(&Enum.sum/1)
+|> Utils.max_n(3)
+|> Enum.sum()
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+200158
+```

@@ -1,0 +1,2 @@
+## Day 1: 
+[![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fraw.githubusercontent.com%2Felepedus%2Fadvent-of-code-2022-elixir%2Fmain%2Fday_one.livemd)
